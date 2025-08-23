@@ -19,6 +19,7 @@ module Api
 
         latitude = coordinates[:latitude]
         longitude = coordinates[:longitude]
+        location = format_location(coordinates)
 
         puts "=== DEBUG: Geocoder coordinates ==="
         puts "Latitude: #{latitude}"
@@ -73,6 +74,22 @@ module Api
           Date.parse(params[:end_date])
         rescue ArgumentError
           render json: { error: "Invalid date format. Use YYYY-MM-DD" }, status: :bad_request
+        end
+      end
+      
+      def format_location(coordinates)
+        city = coordinates[:city]
+        country = coordinates[:country]
+        
+        if city && country
+          "#{city}, #{country}"
+        elsif country
+          country
+        elsif city
+          city
+        else
+          # Fallback to the first part of the address
+          coordinates[:address].split(',').first rescue "Unknown location"
         end
       end
 
