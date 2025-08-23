@@ -1,0 +1,8 @@
+class SunEvent < ApplicationRecord
+
+    def self.find_by_location_and_date_range(lat, lng, start_date, end_date)
+        where(latitude: lat, longitude: lng)
+            .where(date: start_date..end_date)
+            .order(:date)
+    end
+end
