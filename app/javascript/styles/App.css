@@ -1,13 +1,12 @@
 :root {
-  --sunrise-orange: #E5533A;
-  --sunset-purple: #2D2645;
-  --sky-blue: #87CEEB;
+  --sunrise-orange: #F9BC60;
+  --sunset-green-blue: #398684;
+  --sunset-background: #094869;
+
+  --sky-blue: #234DC2;
   --light-yellow: #FFD700;
-  --warm-white: #FFF5E1;
-  --dark-blue: #2C3E50;
-  --light-purple: #6B5CA5;
-  --soft-orange: #FF8C65;
-  --white: #FFFFFF;
+  --warm-white: rgb(235, 216, 179);
+  --dark-blue: #0E0E68;
 }
 
 /* Estilos gerais */
@@ -15,9 +14,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, var(--light-yellow) 0%, var(--sunrise-orange) 100%);
+  background: var(--sunset-background);
   min-height: 100vh;
-  color: var(--dark-blue);
 }
 
 .main-container {
@@ -37,14 +35,14 @@ body {
   text-align: center;
   margin-bottom: 30px;
   padding: 35px;
-  background: rgba(255, 255, 255, 0.15);
   border-radius: 24px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px); 
+  border: 2px solid var(--sunrise-orange);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
   width: 90%;
   max-width: 1000px;
   animation: fadeIn 0.8s ease-out;
+  background: var(--sunset-green-blue);
 }
 
 .app-logo-container {
@@ -53,15 +51,11 @@ body {
   justify-content: center;
   margin-bottom: 5px;
   padding: 5px;
-
   color: var(--sunrise-orange);
-  
 }
 
 .app-logo {
-
   padding-right: 5px;
-  
   object-fit: contain;
 }
 
@@ -78,17 +72,12 @@ body {
   max-width: 800px;
 }
 
-.header-container {
-  background: linear-gradient(180deg, var(--light-purple), var(--sunset-purple));
-
-}
-
 /* Mensagens de erro e loading */
 .error {
   color: #d32f2f;
   margin: 20px 0;
   padding: 18px;
-  border: 1px solid #ffcdd2;
+  border: 2px solid #ffcdd2;
   background-color: #ffebee;
   border-radius: 12px;
   text-align: center;
@@ -105,7 +94,7 @@ body {
   color: var(--dark-blue);
   font-style: italic;
   font-size: 1.2rem;
-  background: rgba(255, 215, 0, 0.1);
+  background: var(--sunrise-orange);
   border-radius: 12px;
   margin: 20px 0;
   width: 90%;
@@ -113,66 +102,9 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
-/* Tabela */
-.sun-data-table {
-  margin: 20px 0;
-  padding: 30px;
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  width: 90%;
-  max-width: 1000px;
-  animation: fadeIn 0.8s ease-out;
-}
-
-.sun-data-table h2 {
-  margin: 0 0 30px 0;
-  font-size: 1.8rem;
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 600;
-  padding-bottom: 10px;
-}
-.sun-data-table {
-  background: linear-gradient(180deg, var(--light-purple), var(--sunset-purple));
-
-}
-
-.sun-data-table>h2{
-  background-color: var(--sunrise-orange);
-}
-
-/* Estilos do formulário (mantidos da versão anterior) */
-.form-input {
-  padding: 14px 20px;
-  border: 2px solid var(--light-yellow);
-  border-radius: 30px;
-  font-size: 16px;
-  min-width: 200px;
-  background: rgba(255, 255, 255, 0.92);
-  transition: all 0.3s ease;
-  font-family: inherit;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--sunrise-orange);
-  box-shadow: 0 0 0 4px rgba(229, 83, 58, 0.25);
-  background: white;
-  transform: translateY(-2px);
-}
-
-.form-input::placeholder {
-  color: #888;
-}
-
 .submit-button {
   padding: 14px 28px;
-  background: linear-gradient(45deg, var(--sunrise-orange), var(--light-purple));
+  background: var(--sunrise-orange);
   color: white;
   border: none;
   border-radius: 30px;
@@ -188,7 +120,7 @@ body {
 .submit-button:hover:not(.loading) {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(229, 83, 58, 0.5);
-  background: linear-gradient(45deg, var(--soft-orange), var(--light-purple));
+  background: linear-gradient(45deg, var(--sunrise-orange), var(--sunrise-orange));
 }
 
 .submit-button.loading {
@@ -198,29 +130,58 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Tabela de dados */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
+.location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px 0;
+  background: var(--sunset-green-blue);
+  border-radius: 18px;
+  padding: 30px;
+  width: 90%;
+  max-width: 1000px;
+  border: 2px solid var(--sunrise-orange);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.location-header {
+  width: 100%;
+  text-align: center;
+}
+
+.location-header h3 {
+  margin-top: 0;
+  color: var(--sunrise-orange);
+  border-bottom: 2px solid var(--sunrise-orange);
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.location-info p {
+  margin: 10px 0;
+  color: white;
   font-size: 16px;
 }
 
-.data-table th {
-  background: linear-gradient(45deg, var(--light-purple), var(--sunset-purple));
-  color: white;
-  padding: 15px;
-  text-align: left;
-  font-weight: 600;
+.location-info strong {
+  color: var(--sunrise-orange);
+  min-width: 80px;
+  display: inline-block;
 }
 
-.data-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.data-table tr:hover {
-  background-color: rgba(255, 215, 0, 0.05);
+/* Adicione estilos responsivos */
+@media (max-width: 768px) {
+  .location-info {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .location-info p {
+    font-size: 14px;
+  }
 }
 
 /* Responsividade */

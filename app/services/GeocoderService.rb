@@ -5,7 +5,9 @@ class GeocoderService
     return {
       latitude: result.latitude,
       longitude: result.longitude,
-      city: result.city || result.suburb || result.town,
+      city: result.city,
+      suburb: result.suburb,
+      town: result.town,
       country: result.country,
     } if result
 

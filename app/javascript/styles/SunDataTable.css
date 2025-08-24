@@ -1,45 +1,58 @@
+/* Tabela */
 .sun-data-table {
-  margin: 30px 0;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  margin: 20px 0;
+  padding: 30px;
   background: white;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--sunrise-orange);
+  width: 90%;
+  max-width: 1000px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .sun-data-table h2 {
-  margin: 0 0 20px 0;
-  color: #333;
-  font-size: 1.5rem;
+  margin: 0 0 30px 0;
+  font-size: 1.8rem;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+.sun-data-table {
+  background: var(--sunset-green-blue);
+
 }
 
+.sun-data-table>h2{
+  background-color: var(--sunrise-orange);
+}
+
+/* Tabela de dados */
 .data-table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  font-size: 14px;
+  font-size: 16px;
+  background: var(--warm-white);
 }
 
 .data-table th {
-  background: #f8f9fa;
-  padding: 12px;
-  border: 1px solid #dee2e6;
+  background: var(--sunrise-orange);
+  color: white;
+  padding: 15px;
   text-align: left;
   font-weight: 600;
 }
 
 .data-table td {
-  padding: 10px 12px;
-  border: 1px solid #dee2e6;
-}
-
-.data-table tr.even {
-  background: #f8f9fa;
-}
-
-.data-table tr.odd {
-  background: white;
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--sunrise-orange);
+  color: rgb(77, 77, 77);
 }
 
 .data-table tr:hover {
-  background: #e9ecef;
+  background-color:  wheat;
 }

@@ -72,18 +72,18 @@ module Api
       end
       
       def format_location(coordinates)
-        city = coordinates[:city]
+        city    = coordinates[:city] || coordinates[:town]
+        suburb  = coordinates[:suburb]
         country = coordinates[:country]
         
-        if city && country
+        if suburb && city && country
+          "#{suburb}, #{city}, #{country}"
+        elsif city && country
           "#{city}, #{country}"
         elsif country
           country
         elsif city
           city
-        else
-          # Fallback to the first part of the address
-          coordinates[:address].split(',').first rescue "Unknown location"
         end
       end
 

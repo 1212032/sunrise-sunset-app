@@ -14,7 +14,6 @@ const SunDataTable = ({ data }) => {
             <th>Sunset</th>
             <th>Golden Hour</th>
             <th>Day Length</th>
-            <th>Location</th>
           </tr>
         </thead>
         <tbody>
@@ -25,7 +24,6 @@ const SunDataTable = ({ data }) => {
               <td>{formatTime(item.attributes.sunset)}</td>
               <td>{formatTime(item.attributes.golden_hour)}</td>
               <td>{item.attributes.day_length}</td>
-              <td>{item.attributes.location}</td>
             </tr>
           ))}
         </tbody>
