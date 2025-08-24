@@ -30,7 +30,9 @@ gem "geocoder"
 gem "rspec-rails", "~> 8.0"
 gem "fast_jsonapi"
 
-gem 'vite_rails'
+gem "vite_rails"
+
+# gem "http"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -38,6 +40,9 @@ group :development, :test do
   gem "brakeman", require: false
 
   gem "rubocop-rails-omakase", require: false
+
+  gem "webmock"
+  
 end
 
 group :development do

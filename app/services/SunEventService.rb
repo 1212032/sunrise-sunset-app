@@ -16,6 +16,7 @@ class SunEventService
       time_format: '24'
     }
 
+    
     # Adiciona parâmetros de data conforme necessário
     if @start_date && @end_date && @start_date != @end_date
       params[:date_start] = @start_date
@@ -23,9 +24,6 @@ class SunEventService
     elsif @start_date
       params[:date] = @start_date
     end
-
-    puts "=== DEBUG: API Request ==="
-    puts "Params: #{params}"
 
     response = HTTParty.get(BASE_URL, query: params)
     return { error: "API request failed" } unless response.success?

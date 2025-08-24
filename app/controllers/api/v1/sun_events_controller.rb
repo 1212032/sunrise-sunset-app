@@ -21,14 +21,12 @@ module Api
         longitude = coordinates[:longitude]
         location = format_location(coordinates)
 
-        puts "=== DEBUG: Geocoder coordinates ==="
-        puts "Latitude: #{latitude}"
-        puts "Longitude: #{longitude}"
+        
 
         # Check if already cached in DB
         cached_events = SunEvent.find_by_location_and_date_range(latitude, longitude, start_date, end_date)
         
-        puts "=== DEBUG: Cached events found ==="
+        puts "\n=== DEBUG: Cached events found ==="
         puts "Number of cached events: #{cached_events.size}"
         puts "Expected number: #{(Date.parse(end_date) - Date.parse(start_date) + 1).to_i}"
 
@@ -36,10 +34,6 @@ module Api
         all_dates = (Date.parse(start_date)..Date.parse(end_date)).to_a
         cached_dates = cached_events.map(&:date)
         missing_dates = all_dates - cached_dates
-
-        puts "=== DEBUG: Missing dates ==="
-        puts "Missing dates: #{missing_dates.map(&:to_s)}"
-        puts "Missing count: #{missing_dates.size}"
 
         # If all dates are cached, return them
         if missing_dates.empty?
