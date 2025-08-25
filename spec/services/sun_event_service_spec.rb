@@ -115,26 +115,22 @@ RSpec.describe SunEventService do
         it "returns an error if latitude is nil" do
             service = SunEventService.new(nil, -8.4292, "2025-08-24", "2025-08-25")
             result = service.fetch
-
-            expect(result).to eq({error: "API request failed"})
+            expect(result).to eq({ error: "API request failed" })
         end
         it "returns an error if longitude is nil" do
-            service = SunEventService.new(40.2111, nil, "2025-08-24","2025-08-24")
+            service = SunEventService.new(40.2111, nil, "2025-08-24", "2025-08-24")
             result = service.fetch
-
             expect(result).to eq({ error: "API request failed" })
         end
 
         it "returns an error if both latitude and longitude are nil" do
             service = SunEventService.new(nil, nil, "2025-08-24", "2025-08-24")
             result = service.fetch
-            
             expect(result).to eq({ error: "API request failed" })
         end
         it "handles invalid date formats graacefully" do
             service = SunEventService.new(40.2111, -8.4292, "invalid-date")
             result = service.fetch
-            
             expect(result).to eq({ error: "API request failed" })
         end
     end

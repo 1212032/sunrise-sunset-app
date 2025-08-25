@@ -24,6 +24,5 @@ RSpec.describe SunEvent, type: :model do
       expect(event).not_to be_valid
       expect(event.errors[:location]).to include("can't be blank")
     end
-    
   end
 end

@@ -1,6 +1,6 @@
 class SunEventService
-  BASE_URL = 'https://api.sunrisesunset.io/json'.freeze
-  
+  BASE_URL = "https://api.sunrisesunset.io/json".freeze
+
   def initialize(latitude, longitude, start_date = nil, end_date = nil)
     @latitude = latitude
     @longitude = longitude
@@ -11,10 +11,10 @@ class SunEventService
   def fetch
     params = {
       lat: @latitude,
-      lng: @longitude,
+      lng: @longitude
     }
 
-    
+
     # Adiciona parâmetros de data conforme necessário
     if @start_date && @end_date && @start_date != @end_date
       params[:date_start] = @start_date
@@ -33,29 +33,29 @@ class SunEventService
 
   def parse_response(response)
     data = JSON.parse(response.body)
-    
-    if data['status'] == 'OK'
-      results = data['results'].is_a?(Array) ? data['results'] : [data['results']]
+
+    if data["status"] == "OK"
+      results = data["results"].is_a?(Array) ? data["results"] : [ data["results"] ]
       results.map { |result| transform_result(result) }
     else
-      { error: data['status'] }
+      { error: data["status"] }
     end
   end
 
   def transform_result(result)
     {
-      date: result['date'],
-      sunrise: result['sunrise'],
-      sunset: result['sunset'],
-      first_light: result['first_light'],
-      last_light: result['last_light'],
-      dawn: result['dawn'],
-      dusk: result['dusk'],
-      solar_noon: result['solar_noon'],
-      golden_hour: result['golden_hour'],
-      day_length: result['day_length'],
-      timezone: result['timezone'],
-      utc_offset: result['utc_offset']
+      date: result["date"],
+      sunrise: result["sunrise"],
+      sunset: result["sunset"],
+      first_light: result["first_light"],
+      last_light: result["last_light"],
+      dawn: result["dawn"],
+      dusk: result["dusk"],
+      solar_noon: result["solar_noon"],
+      golden_hour: result["golden_hour"],
+      day_length: result["day_length"],
+      timezone: result["timezone"],
+      utc_offset: result["utc_offset"]
     }
   end
 end

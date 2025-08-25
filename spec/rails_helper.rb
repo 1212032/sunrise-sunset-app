@@ -16,13 +16,13 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.fixture_paths = [Rails.root.join('spec/fixtures')]
+  config.fixture_paths = [ Rails.root.join('spec/fixtures') ]
   config.use_transactional_fixtures = true
   config.filter_rails_from_backtrace!
-  
+
   # Adicione estas configurações
   config.include Rails.application.routes.url_helpers
-  
+
   # Configuração do WebMock
   config.before(:each) do
     WebMock.disable_net_connect!(allow_localhost: true)

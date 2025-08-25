@@ -18,7 +18,7 @@ RSpec.describe GeocoderService do
       end
 
       before do
-        allow(Geocoder).to receive(:search).with(location).and_return([geocoder_result])
+        allow(Geocoder).to receive(:search).with(location).and_return([ geocoder_result ])
       end
 
       it "returns a hash with latitude, longitude, city, and country" do
@@ -58,7 +58,7 @@ RSpec.describe GeocoderService do
       end
 
       before do
-        allow(Geocoder).to receive(:search).with(location).and_return([geocoder_result])
+        allow(Geocoder).to receive(:search).with(location).and_return([ geocoder_result ])
       end
 
       it "uses suburb as city" do

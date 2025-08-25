@@ -11,7 +11,7 @@ module Api
         if location.blank? || start_date.blank? || end_date.blank?
           return render json: { error: "Missing parameters: location, start_date, end_date" }, status: :bad_request
         end
-        
+
         coordinates = GeocoderService.coordinates_for(location)
         if coordinates.nil?
           return render json: { error: "Invalid location" }, status: :bad_request
@@ -21,11 +21,11 @@ module Api
         longitude = coordinates[:longitude]
         location = format_location(coordinates)
 
-        
+
 
         # Check if already cached in DB
         cached_events = SunEvent.find_by_location_and_date_range(latitude, longitude, start_date, end_date)
-        
+
         puts "\n=== DEBUG: Cached events found ==="
         puts "Number of cached events: #{cached_events.size}"
         puts "Expected number: #{(Date.parse(end_date) - Date.parse(start_date) + 1).to_i}"
@@ -45,10 +45,10 @@ module Api
         begin
           puts "=== DEBUG: Fetching missing dates from API ==="
           new_events = fetch_and_save_missing_dates(location, latitude, longitude, missing_dates)
-          
+
           # Combine cached events with new events
           all_events = SunEvent.find_by_location_and_date_range(latitude, longitude, start_date, end_date)
-          
+
           render json: SunEventSerializer.new(all_events).serializable_hash
         rescue => e
           render json: { error: "Failed to fetch data: #{e.message}" }, status: :internal_server_error
@@ -70,12 +70,12 @@ module Api
           render json: { error: "Invalid date format. Use YYYY-MM-DD" }, status: :bad_request
         end
       end
-      
+
       def format_location(coordinates)
         city    = coordinates[:city] || coordinates[:town]
         suburb  = coordinates[:suburb]
         country = coordinates[:country]
-        
+
         if suburb && city && country
           "#{suburb}, #{city}, #{country}"
         elsif city && country
