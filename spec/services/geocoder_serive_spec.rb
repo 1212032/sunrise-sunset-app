@@ -28,6 +28,8 @@ RSpec.describe GeocoderService do
           latitude: 40.2111,
           longitude: -8.4292,
           city: "Coimbra",
+          suburb: nil,
+          town: nil,
           country: "Portugal"
         })
       end

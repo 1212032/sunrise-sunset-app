@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/SunDataForm.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const SunDataForm = ({ onSubmit, loading }) => {
   const [formData, setFormData] = useState({
@@ -23,45 +25,59 @@ const SunDataForm = ({ onSubmit, loading }) => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <form onSubmit={handleSubmit} className="sun-data-form">
-      <input
-        type="text"
-        name="location"
-        placeholder="Location (e.g., Lisbon, London)"
-        value={formData.location}
-        onChange={handleChange}
+		<form onSubmit={handleSubmit} className="sun-data-form">
+			<input
+				type="text"
+				name="location"
+				placeholder="Location"
+				value={formData.location}
+				onChange={handleChange}
+				className="form-input"
+				required
+        autoComplete="off"
+        minLength={3}
+			/>
+
+			
+      <DatePicker
+        selected={formData.startDate}
+        onChange={(date) =>
+          setFormData((prev) => ({ ...prev, startDate: date }))
+        }
+        selectsStart
+        startDate={formData.startDate}
+        endDate={formData.endDate}
+        maxDate={formData.endDate}
+        placeholderText="Start Date "
         className="form-input"
+        dateFormat="yyyy-MM-dd"
         required
+        onChangeRaw={(e) => e.preventDefault()}   
       />
-      
-      <input
-        type="date"
-        name="startDate"
-        value={formData.startDate}
-        onChange={handleChange}
-        max={formData.endDate}
+
+			<DatePicker
+        selected={formData.endDate}
+        onChange={(date) =>
+          setFormData((prev) => ({ ...prev, endDate: date }))
+        }
+        selectsEnd
+        startDate={formData.startDate}
+        endDate={formData.endDate}
+        minDate={formData.startDate}
+        placeholderText="End Date "
         className="form-input"
+        dateFormat="yyyy-MM-dd"
         required
+        onChangeRaw={(e) => e.preventDefault()}   
       />
-      
-      <input
-        type="date"
-        name="endDate"
-        value={formData.endDate}
-        onChange={handleChange}
-        min={formData.startDate}
-        className="form-input"
-        required
-      />
-      
-      <button
-        type="submit"
-        disabled={loading}
-        className={`submit-button ${loading ? 'loading' : ''}`}
-      >
-        {loading ? 'Loading...' : 'Get Data'}
-      </button>
-    </form>
+
+			<button
+				type="submit"
+				disabled={loading}
+				className={`submit-button ${loading ? "loading" : ""}`}>
+				{loading ? "Loading..." : "Get Data"}
+			</button>
+		</form>
   );
 };
 

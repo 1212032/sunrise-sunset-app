@@ -19,5 +19,14 @@ export const fetchSunEvents = async (location, startDate, endDate) => {
 
 export const formatTime = (timeString) => {
   if (!timeString) return '';
-  return timeString.split(':').slice(0, 2).join(':');
+  
+  const parts = timeString.split(':');
+  
+  if (parts.length < 2) return timeString; 
+  
+  const hours = parts[0];
+  const minutes = parts[1];
+  const ampm = parts[2]?.split(' ')[1] || ''; 
+  
+  return `${hours}:${minutes} ${ampm}`.trim();
 };

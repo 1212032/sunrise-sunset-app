@@ -12,8 +12,6 @@ class SunEventService
     params = {
       lat: @latitude,
       lng: @longitude,
-      timezone: 'UTC',
-      time_format: '24'
     }
 
     

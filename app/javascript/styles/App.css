@@ -88,20 +88,6 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
-.loading {
-  text-align: center;
-  padding: 25px;
-  color: var(--dark-blue);
-  font-style: italic;
-  font-size: 1.2rem;
-  background: var(--sunrise-orange);
-  border-radius: 12px;
-  margin: 20px 0;
-  width: 90%;
-  max-width: 1000px;
-  animation: fadeIn 0.5s ease-out;
-}
-
 .submit-button {
   padding: 14px 28px;
   background: var(--sunrise-orange);

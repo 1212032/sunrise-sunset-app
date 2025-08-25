@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import SunDataForm from './SunDataForm';
 import SunDataTable from './SunDataTable';
+import SunDataLocation from './SunDataLocation';
+import Footer from './Footer';
 import { fetchSunEvents } from '../services/api';
 import '../styles/App.css';
 import { IoSunnySharp } from "react-icons/io5";
@@ -34,10 +36,17 @@ const App = () => {
     setError('');
 
     try {
-      const response = await fetchSunEvents(location, startDate, endDate);
-      setData(response.data || []);
-      setLastQuery(currentQuery); // save the successful query
-    } catch (err) {
+
+    //Timezone issue fix  
+		const start = new Date(startDate).toLocaleDateString('en-CA');
+		const end = new Date(endDate).toLocaleDateString('en-CA'); 
+
+		console.log("StartDate:", start); // "2025-08-01"
+		console.log("EndDate:", end); // "2025-08-06"
+		const response = await fetchSunEvents(location, start, end);
+		setData(response.data || []);
+		setLastQuery(currentQuery); // save the successful query
+	} catch (err) {
       setError(err.response?.data?.error || 'Failed to fetch data');
       setData([]);
     } finally {
@@ -58,32 +67,14 @@ const App = () => {
 
       {error && <div className="error">{error}</div>}
 
-      {loading && <div className="loading">Loading data...</div>}
+      <SunDataLocation data={data}/>
 
-      {data.length > 0 && (
-        <div className="location-container">
-          <div className="location-header">
-            <h3>
-              <ImLocation2 />
-              Location Information
-            </h3>
-          </div>
-          <div className="location-info">
-            <p>
-              <strong>Location:</strong> {data[0].attributes.location}
-            </p>
-            <p>
-              <strong>Latitude:</strong> {data[0].attributes.latitude}
-            </p>
-            <p>
-              <strong>Longitude:</strong> {data[0].attributes.longitude}
-            </p>
-          </div>
-        </div>
-      )}
 
       <SunDataTable data={data} />
+
+      <Footer></Footer>
     </div>
+
   );
 };
 
